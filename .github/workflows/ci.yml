@@ -1,0 +1,34 @@
+name: CI - Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Récupération du code du dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Installation de Node.js (même version que ton projet)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3️⃣ Installation des dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # 4️⃣ Compilation TypeScript
+      - name: Build
+        run: npm run build
+
+      # 5️⃣ Exécution des tests unitaires
+      - name: Run tests
+        run: npm test
