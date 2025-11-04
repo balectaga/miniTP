@@ -1,8 +1,11 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
+/** @type {import('jest').Config} */
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['**/tests/**/*.test.ts'],
-  // Optionnel si tu veux surcharger TS pour les tests :
-  // globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
+  roots: ['<rootDir>/test', '<rootDir>/src'],
+  testMatch: ['**/*.spec.ts'],
+  testPathIgnorePatterns: ['/node_modules/'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  collectCoverageFrom: ['src/**/*.ts'],
+  transform: { '^.+\\.ts$': ['ts-jest', { tsconfig: './tsconfig.json' }] }
 };
