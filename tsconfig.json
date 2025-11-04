@@ -3,10 +3,41 @@
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
+<<<<<<< Updated upstream
     "esModuleInterop": true,
     "strict": true,
     "outDir": "dist",
     "types": ["node", "jest"]
   },
   "include": ["src", "test"]
+=======
+    "lib": ["ES2020", "ES2020.BigInt", "ES2020.String", "ES2020.Symbol.WellKnown"],
+
+    "rootDir": "src",
+    "outDir": "dist",
+
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // Charge explicitement les types globaux de Node et Jest
+    "types": ["node", "jest"],
+
+    // (facultatif) accélère la compilation et évite des faux positifs dans node_modules
+    "skipLibCheck": true,
+
+    // options que tu avais déjà (garde-les si tu en as besoin)
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    // Pas nécessaire mais inoffensif :
+    "baseUrl": "./",
+    "incremental": true
+  },
+
+  // très important : inclure aussi les tests
+  "include": ["src/**/*",],
+  "exclude": ["node_modules", "dist","test"]
+>>>>>>> Stashed changes
 }

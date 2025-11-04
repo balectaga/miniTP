@@ -1,0 +1,39 @@
+name: CI - Build, Lint and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupération du code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Installation de Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3. Installation propre des dépendances
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Vérification du linting TypeScript
+      - name: Lint check
+        run: npm run lint
+
+      # 5. Compilation du projet
+      - name: Build TypeScript
+        run: npm run build
+
+      # 6. Tests unitaires (Jest)
+      - name: Run tests
+        run: npm test
