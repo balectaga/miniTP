@@ -5,7 +5,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-
+# Le port interne de l'app
+EXPOSE 8000
 # Étape 2 : exécution minimale
 FROM node:20-alpine
 WORKDIR /app
