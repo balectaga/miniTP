@@ -3,6 +3,11 @@ import si from 'systeminformation';
 
 const app = express();
 
+app.get('/', (_req, res) => {
+  res.send('--------------------Hello World-----------------');
+});
+
+
 app.get('/api/v1/sysinfo', async (_req, res) => {
   try {
     const [cpu, system, mem, os, currentLoad, processes, diskLayout, networkInterfaces] =
@@ -15,6 +20,8 @@ app.get('/api/v1/sysinfo', async (_req, res) => {
     res.status(500).json({ error: (e as Error).message });
   }
 });
+
+
 
 app.use((_req, res) => res.status(404).send('Not Found'));
 
